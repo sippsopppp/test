@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Registration</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 2rem;}
+        form {max-width: 400px; margin: auto; padding: 1rem; border: 1px solid #ccc; border-radius: 8px;}
+        label {display: block; margin-top: 1rem;}
+        input, select {width: 100%; padding: 0.5rem; margin-top: 0.5rem;}
+        button {margin-top: 1rem; padding: 0.5rem 1rem;}
+    </style>
+</head>
+<body>
+    <h1>Sports Registration Form</h1>
+    <form id="registrationForm" onsubmit="return handleSubmit(event)">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="sport">Select Sport:</label>
+        <select id="sport" name="sport" required>
+            <option value="">--Choose--</option>
+            <option value="soccer">Soccer</option>
+            <option value="basketball">Basketball</option>
+            <option value="tennis">Tennis</option>
+            <option value="swimming">Swimming</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function handleSubmit(e){
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const sport = document.getElementById('sport').value;
+            alert(`Thank you, ${name}!\nYou have registered for ${sport}.\nA confirmation has been sent to ${email}.`);
+            e.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
+

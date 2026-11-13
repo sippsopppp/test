@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Enrollment Page</title>
+<style>
+  body {font-family: Arial, sans-serif; margin: 40px;}
+  .container {max-width: 600px; margin: auto;}
+  .clock {font-size: 2em; color: #c00; margin-bottom: 20px;}
+  form {display: flex; flex-direction: column; gap: 10px;}
+  label {font-weight: bold;}
+  input[type="text"], input[type="email"] {padding: 8px; font-size: 1em;}
+  button {padding: 10px; font-size: 1em; background: #28a745; color: white; border: none; cursor: pointer;}
+  button:hover {background: #218838;}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Course Enrollment</h1>
+  <div class="clock" id="clock">12:00</div>
+  <form id="enrollForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Enroll Now</button>
+  </form>
+</div>
+<script>
+  const clockEl = document.getElementById('clock');
+  let totalSeconds = 12 * 60; // 12 minutes
+  function updateClock() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    clockEl.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    if(totalSeconds > 0) {
+      totalSeconds--;
+    } else {
+      clearInterval(timer);
+      alert('Time is up!');
+    }
+  }
+  const timer = setInterval(updateClock, 1000);
+  updateClock();
+
+  document.getElementById('enrollForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    alert(`Enrollment successful!\nName: ${name}\nEmail: ${email}`);
+  });
+</script>
+</body>
+</html>
+

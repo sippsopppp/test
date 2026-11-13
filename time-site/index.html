@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Current Time</title>
+<style>
+  body {font-family: Arial, sans-serif; text-align: center; margin-top: 50px;}
+  #clock {font-size: 3em;}
+</style>
+</head>
+<body>
+<h1>Current Time</h1>
+<div id="clock">--:--:--</div>
+<script>
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString();
+  document.getElementById('clock').textContent = timeString;
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
