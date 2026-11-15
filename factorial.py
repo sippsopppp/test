@@ -1,54 +1,56 @@
+"""Module providing a factorial function.
+
+The function `factorial(n)` calculates the factorial of a non‑negative
+integer `n`. It implements the standard mathematical definition:
+
+- `factorial(0) == 1`
+- `factorial(1) == 1`
+- For `n > 1`, `factorial(n) == n * factorial(n-1)`.
+
+The function raises a :class:`ValueError` if a negative integer is
+provided.
 """
-factorial.py
 
-A simple script to calculate factorial of a non-negative integer.
+from __future__ import annotations
 
-Usage:
-    python factorial.py 5
-
-This will print: 120
-
-You can also import the factorial function in other modules.
-"""
-
-import sys
-import math
+__all__ = ["factorial"]
 
 
 def factorial(n: int) -> int:
     """Return the factorial of a non‑negative integer.
 
-    Args:
-        n: Non‑negative integer to calculate factorial for.
+    Parameters
+    ----------
+    n : int
+        Non‑negative integer whose factorial is to be computed.
 
-    Returns:
-        The factorial of n.
+    Returns
+    -------
+    int
+        The factorial of ``n``.
 
-    Raises:
-        ValueError: if n is negative.
+    Raises
+    ------
+    ValueError
+        If ``n`` is negative.
     """
+
     if n < 0:
-        raise ValueError("n must be a non‑negative integer")
-    # We could use math.factorial but implement a simple loop for clarity
+        raise ValueError("n must be a non-negative integer")
+    if n <= 1:
+        return 1
     result = 1
     for i in range(2, n + 1):
         result *= i
     return result
 
-
+# If the module is run directly, perform a simple demonstration.
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python factorial.py <non-negative integer>")
-        sys.exit(1)
-    try:
-        number = int(sys.argv[1])
-    except ValueError:
-        print("Please provide a valid integer.")
-        sys.exit(1)
-
-    try:
-        print(factorial(number))
-    except ValueError as e:
-        print(e)
-        sys.exit(1)
+    import sys
+    for arg in sys.argv[1:]:
+        try:
+            val = int(arg)
+            print(f"factorial({val}) = {factorial(val)}")
+        except Exception as exc:
+            print(f"Error for {arg}: {exc}")
 
