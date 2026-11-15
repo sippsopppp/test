@@ -2,18 +2,17 @@ import unittest
 
 from factorial import factorial
 
-
 class TestFactorial(unittest.TestCase):
-    def test_factorial_values(self):
+    def test_factorial(self):
+        # Test basic cases
         self.assertEqual(factorial(0), 1)
         self.assertEqual(factorial(1), 1)
         self.assertEqual(factorial(5), 120)
         self.assertEqual(factorial(10), 3628800)
 
-    def test_factorial_negative(self):
+        # Test negative input raises ValueError
         with self.assertRaises(ValueError):
-            factorial(-1)
-
+            factorial(-5)
 
 if __name__ == "__main__":
     unittest.main()
