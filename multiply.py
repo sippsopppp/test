@@ -1,37 +1,18 @@
-#!/usr/bin/env python3
-"""Simple multiplication program.
-
-This script reads two numbers from command line arguments and prints
-their product. If no arguments are supplied it prompts the user.
-"""
-
-import sys
-
-
-def main():
-    args = sys.argv[1:]
-    if len(args) == 2:
-        try:
-            a = float(args[0])
-            b = float(args[1])
-        except ValueError:
-            print("Error: both arguments must be numbers.")
-            sys.exit(1)
-    else:
-        # interactive mode
-        try:
-            a = float(input("Enter first number: "))
-            b = float(input("Enter second number: "))
-        except ValueError:
-            print("Error: invalid input.")
-            sys.exit(1)
-    product = a * b
-    # print as integer if both inputs are integers
-    if a.is_integer() and b.is_integer():
-        print(int(product))
-    else:
-        print(product)
+def multiply(a, b):
+    """Return the product of a and b."""
+    return a * b
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) != 3:
+        print("Usage: python multiply.py <num1> <num2>")
+        sys.exit(1)
+    try:
+        a = float(sys.argv[1])
+        b = float(sys.argv[2])
+    except ValueError:
+        print("Both arguments must be numbers.")
+        sys.exit(1)
+    result = multiply(a, b)
+    print(f"{a} * {b} = {result}")
 
