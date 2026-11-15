@@ -1,28 +1,19 @@
-"""Module providing a factorial function.
+"""Factorial calculation module.
 
-The function `factorial(n)` calculates the factorial of a non‑negative
-integer `n`. It implements the standard mathematical definition:
-
-- `factorial(0) == 1`
-- `factorial(1) == 1`
-- For `n > 1`, `factorial(n) == n * factorial(n-1)`.
-
-The function raises a :class:`ValueError` if a negative integer is
-provided.
+This module provides a simple recursive implementation of the factorial
+function. It raises a :class:`ValueError` if a negative number is
+supplied.
 """
-
-from __future__ import annotations
-
-__all__ = ["factorial"]
 
 
 def factorial(n: int) -> int:
-    """Return the factorial of a non‑negative integer.
+    """Return the factorial of *n*.
 
     Parameters
     ----------
     n : int
-        Non‑negative integer whose factorial is to be computed.
+        The number to compute the factorial of. ``n`` must be a
+        non‑negative integer.
 
     Returns
     -------
@@ -34,23 +25,9 @@ def factorial(n: int) -> int:
     ValueError
         If ``n`` is negative.
     """
-
     if n < 0:
-        raise ValueError("n must be a non-negative integer")
-    if n <= 1:
+        raise ValueError("Factorial is not defined for negative values.")
+    if n == 0:
         return 1
-    result = 1
-    for i in range(2, n + 1):
-        result *= i
-    return result
-
-# If the module is run directly, perform a simple demonstration.
-if __name__ == "__main__":
-    import sys
-    for arg in sys.argv[1:]:
-        try:
-            val = int(arg)
-            print(f"factorial({val}) = {factorial(val)}")
-        except Exception as exc:
-            print(f"Error for {arg}: {exc}")
+    return n * factorial(n - 1)
 
